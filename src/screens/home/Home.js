@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import './Profile.css';
+import './Home.css';
 import Header from '../../common/header/Header';
 
-class Profile extends Component {
+class Home extends Component {
 
     render(){
         return(
@@ -15,4 +15,4 @@ class Profile extends Component {
 
 }
 
-export default Profile;
+export default Home;
