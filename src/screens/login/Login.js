@@ -57,7 +57,8 @@ class Login extends Component {
     }
 
     redirectToHome = () => {
-        ReactDOM.render(<Home />, document.getElementById('root'));
+        // ReactDOM.render(<Home />, document.getElementById('root'));
+        this.props.history.push("/home");
     }
 
     inputUserNameChangeHandler = (e) => {
@@ -99,7 +100,6 @@ class Login extends Component {
                         </FormHelperText>
                         <Button variant="contained" color="primary" style={{width: 10}} onClick={this.loginClickHandler}>LOGIN</Button>
                     </CardContent>
-                    
                 </Card>               
             </div>
         )
