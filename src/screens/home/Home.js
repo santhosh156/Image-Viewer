@@ -8,7 +8,7 @@ class Home extends Component {
     render(){
         return(
             <div>
-                <Header />
+                <Header profileIcon="true"/>
                 <div>
                     You are in home
                 </div>

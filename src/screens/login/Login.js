@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import './Login.css';
 import Header from '../../common/header/Header';
 import Card from '@material-ui/core/Card';
@@ -10,7 +9,6 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import Home from '../home/Home';
 
 class Login extends Component {
 
@@ -57,7 +55,6 @@ class Login extends Component {
     }
 
     redirectToHome = () => {
-        // ReactDOM.render(<Home />, document.getElementById('root'));
         this.props.history.push("/home");
     }
 
