@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './Header.css';
-import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
 import ListItemText from '@material-ui/core/ListItemText';
+import Avatar from '@material-ui/core/Avatar';
+import { withRouter} from 'react-router-dom';
 
 const StyledMenu = withStyles({
     paper: {
@@ -25,8 +26,9 @@ const StyledMenu = withStyles({
       {...props}
     />
   ));
-  
-  const StyledMenuItem = withStyles(theme => ({
+
+
+ const StyledMenuItem = withStyles(theme => ({
     root: {
       '&:focus': {
         backgroundColor: theme.palette.primary.main,
@@ -42,6 +44,7 @@ class Header extends Component {
     // const [anchorEl, setAnchorEl] = React.useState(null);
     constructor() {
         super();
+        // this.handleClose = this.handleClose.bind(this);
         this.state = {
             loggedIn: sessionStorage.getItem('access-token') == null ? false : true,
             credentials : {
@@ -74,7 +77,7 @@ class Header extends Component {
         this.setState({ anchorEl: event.currentTarget });
     }
     
-    handleClose = (purpose) => {
+    handleClose = (purpose, e) => {
         if( purpose === 'profile'){
             this.props.history.push("/profile");
         } else if( purpose === 'logout') {
@@ -87,20 +90,20 @@ class Header extends Component {
 
     
     render() {  
-              
+        
         return(
             <div>
                 <header className="app-header">
                     <div className="app-logo">Image Viewer</div>
                     {this.props.profileIcon === "true" && this.state.loggedIn ?
                         <div className="showprofile-icon">
-                            <Button
-                                aria-owns={this.state.anchorEl ? 'simple-menu' : undefined}
-                                aria-haspopup="true"
+                            <Avatar 
+                                alt={this.state.userProfile.username} 
+                                src={this.state.userProfile.profile_picture}  
+                                className="avatar" 
                                 onClick={this.handleClick}
-                                >
-                                <img src={this.state.userProfile.profile_picture} alt={this.state.userProfile.username} />
-                            </Button>
+                                aria-owns={this.state.anchorEl ? 'simple-menu' : undefined}
+                                aria-haspopup="true"/>
                             <StyledMenu id="simple-menu" anchorEl={this.state.anchorEl} open={Boolean(this.state.anchorEl)} onClose={this.handleClose.bind(this,'')}>
 
                                 <StyledMenuItem onClick={this.handleClose.bind(this,'profile')}>
@@ -120,4 +123,4 @@ class Header extends Component {
     }
 }
 
-export default Header;
+export default withRouter(Header);
