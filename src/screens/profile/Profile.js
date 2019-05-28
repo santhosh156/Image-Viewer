@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
-import './Home.css';
+import './Profile.css';
 import Header from '../../common/header/Header';
 
-class Home extends Component {
+class Profile extends Component {
 
     render(){
         return(
             <div>
                 <Header profileIcon="true"/>
                 <div>
-                    You are in home
+                    You are in profile page
                 </div>
             </div>
         )
@@ -18,4 +17,4 @@ class Home extends Component {
 
 }
 
-export default Home;
+export default Profile;
