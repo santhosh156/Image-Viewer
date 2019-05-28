@@ -23,8 +23,9 @@ class Login extends Component {
             usernameRequired: 'dispNone',
             password: '',
             passwordRequired: 'dispNone',
+            incorrectCredentials: 'dispNone',
             loggedIn: sessionStorage.getItem('access-token') == null ? false : true,
-            credentails : {
+            credentials : {
                 username : 'admin',
                 password : 'admin'
             },
@@ -34,14 +35,26 @@ class Login extends Component {
 
     loginClickHandler = () => {
         this.state.username === '' ? this.setState({ usernameRequired: 'dispBlock' }) : this.setState({ usernameRequired: 'dispNone' });
-        this.state.password === "" ? this.setState({ passwordRequired: "dispBlock" }) : this.setState({ passwordRequired: "dispNone" });
+        this.state.password === "" ? this.setState({ passwordRequired: 'dispBlock' }) : this.setState({ passwordRequired: 'dispNone' });
 
-        if (this.state.username === "" || this.state.password === "") { return }
+        if (this.state.username === "" || this.state.password === "") { 
+            this.setState({
+                incorrectCredentials : 'dispNone'
+             });
+            return;
+         }
 
-        if(this.state.username === this.state.credentails.username && this.state.password === this.state.credentails.password){
+        if(this.state.username === this.state.credentials.username && this.state.password === this.state.credentials.password){
+            this.setState({
+                incorrectCredentials : 'dispNone'
+             });
             sessionStorage.setItem('access-token', this.state.accessToken);
             this.setState({ loggedIn: true });
             this.redirectToHome();
+        }else {
+             this.setState({
+                incorrectCredentials : 'dispBlock'
+             });
         }
     }
 
@@ -83,7 +96,10 @@ class Login extends Component {
                                 <span className="red">Required</span>
                             </FormHelperText>
                         </FormControl><br /><br />
-
+                        <FormHelperText className={this.state.incorrectCredentials} >
+                                <span className="red">Incorrect username and/or password</span>
+                                <br /><br />
+                        </FormHelperText>
                         <Button variant="contained" color="primary" style={{width: 10}} onClick={this.loginClickHandler}>LOGIN</Button>
                     </CardContent>
                     
