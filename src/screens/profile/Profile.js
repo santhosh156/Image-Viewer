@@ -9,6 +9,9 @@ class Profile extends Component {
         return(
             <div>
                 <Header />
+                <div>
+                    You are in profile page
+                </div>
             </div>
         )
     }
