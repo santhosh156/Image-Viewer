@@ -11,11 +11,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Home from '../home/Home';
-  
 
 class Login extends Component {
 
-    
     constructor(){
         super();
         this.state = {
@@ -70,14 +68,13 @@ class Login extends Component {
         this.setState({ password: e.target.value });
     }
 
-
     render(){
         return(
             <div>
                 <Header />
                 <Card className="cardStyle">
                     <CardContent>
-                        <Typography variant="headline" component="h2">
+                        <Typography variant="h5" component="h5">
                             LOGIN
                         </Typography><br />
                         <FormControl required className="formControl">
