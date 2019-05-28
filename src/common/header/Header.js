@@ -1,10 +1,45 @@
 import React, { Component } from 'react';
 import './Header.css';
-import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import { withStyles } from '@material-ui/core/styles';
+import ListItemText from '@material-ui/core/ListItemText';
 
+const StyledMenu = withStyles({
+    paper: {
+      border: '1px solid #d3d4d5',
+    },
+  })(props => (
+    <Menu
+      elevation={0}
+      getContentAnchorEl={null}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'center',
+      }}
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'center',
+      }}
+      {...props}
+    />
+  ));
+  
+  const StyledMenuItem = withStyles(theme => ({
+    root: {
+      '&:focus': {
+        backgroundColor: theme.palette.primary.main,
+        '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+          color: theme.palette.common.white,
+        },
+      },
+    },
+  }))(MenuItem);
 
 class Header extends Component {
 
+    // const [anchorEl, setAnchorEl] = React.useState(null);
     constructor() {
         super();
         this.state = {
@@ -27,21 +62,58 @@ class Header extends Component {
                      'follows': 3,
                      'followed_by': 32
                     }
-            }
+            },
+            open: false,
+            anchorEl: null,
         }
     }
 
-    render() {
+    
+
+    handleClick = (event) => {
+        this.setState({ anchorEl: event.currentTarget });
+    }
+    
+    handleClose = (purpose) => {
+        if( purpose === 'profile'){
+            this.props.history.push("/profile");
+        } else if( purpose === 'logout') {
+            sessionStorage.clear();
+            this.props.history.push("/");
+        } 
+        this.setState({ anchorEl: null });
+        
+    };
+
+    
+    render() {  
+              
         return(
             <div>
                 <header className="app-header">
                     <div className="app-logo">Image Viewer</div>
                     {this.props.profileIcon === "true" && this.state.loggedIn ?
                         <div className="showprofile-icon">
-                            <Link to={"/profile" }>
+                            <Button
+                                aria-owns={this.state.anchorEl ? 'simple-menu' : undefined}
+                                aria-haspopup="true"
+                                onClick={this.handleClick}
+                                >
                                 <img src={this.state.userProfile.profile_picture} alt={this.state.userProfile.username} />
-                            </Link>
+                            </Button>
+                            <StyledMenu id="simple-menu" anchorEl={this.state.anchorEl} open={Boolean(this.state.anchorEl)} onClose={this.handleClose.bind(this,'')}>
+
+                                <StyledMenuItem onClick={this.handleClose.bind(this,'profile')}>
+                                <ListItemText primary="Profile" />
+                                </StyledMenuItem>
+                                
+                                <StyledMenuItem onClick={this.handleClose.bind(this, 'logout')}>
+                                <ListItemText primary="Logout" />
+                                </StyledMenuItem>
+                            </StyledMenu>
                         </div> : ""}
+
+
                 </header>
             </div>
         )
