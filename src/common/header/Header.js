@@ -5,6 +5,10 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
 import ListItemText from '@material-ui/core/ListItemText';
+import Paper from '@material-ui/core/Paper';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
+import InputBase from '@material-ui/core/InputBase';
 
 const StyledMenu = withStyles({
     paper: {
@@ -93,20 +97,27 @@ class Header extends Component {
                 <header className="app-header">
                     <div className="app-logo">Image Viewer</div>
                     {this.props.profileIcon === "true" && this.state.loggedIn ?
+                        <Paper className="show-search-box">
+                          <IconButton aria-label="Search">
+                            <SearchIcon />
+                          </IconButton>
+                          <InputBase placeholder="Search..." onChange={this.searchInputChangeHandler}/>
+                        </Paper> : ""}  
+                    {this.props.profileIcon === "true" && this.state.loggedIn ?
                         <div className="showprofile-icon">
-                            <Button
+                            <IconButton
                                 aria-owns={this.state.anchorEl ? 'simple-menu' : undefined}
                                 aria-haspopup="true"
                                 onClick={this.handleClick}
                                 >
                                 <img src={this.state.userProfile.profile_picture} alt={this.state.userProfile.username} />
-                            </Button>
+                            </IconButton>
                             <StyledMenu id="simple-menu" anchorEl={this.state.anchorEl} open={Boolean(this.state.anchorEl)} onClose={this.handleClose.bind(this,'')}>
 
                                 <StyledMenuItem onClick={this.handleClose.bind(this,'profile')}>
                                 <ListItemText primary="Profile" />
                                 </StyledMenuItem>
-                                
+                                <hr />
                                 <StyledMenuItem onClick={this.handleClose.bind(this, 'logout')}>
                                 <ListItemText primary="Logout" />
                                 </StyledMenuItem>

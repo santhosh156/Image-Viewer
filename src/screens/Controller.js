@@ -10,7 +10,7 @@ class Controller extends Component {
   constructor()
   {
     super();
-    // this.baseUrl = "http://54.255.154.11:8080/api/v1/";
+    this.baseUrl = "https://api.instagram.com/v1/users/self/";
     this.state = {
       loggedIn: sessionStorage.getItem('access-token') == null ? false : true
     }
@@ -26,12 +26,12 @@ class Controller extends Component {
                   exact 
                   path='/home'
                   component={Home} 
-                  render={(props) => (<Home {...props} /> )} /> 
+                  render={(props) => (<Home {...props} baseUrl = {this.props.baseUrl}/> )} /> 
               <PrivateRoute 
                 exact 
                 path='/profile' 
                 component={Profile} 
-                render={(props) => (<Profile {...props}/>)}   />
+                render={(props) => (<Profile {...props} baseUrl = {this.props.baseUrl}/>)}   />
             </Switch>
         </div>
       </Router>
