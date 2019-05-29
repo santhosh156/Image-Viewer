@@ -11,6 +11,7 @@ import Input from '@material-ui/core/Input';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
 class Login extends Component {
+   
 
     constructor(){
         super();
@@ -25,8 +26,23 @@ class Login extends Component {
                 username : 'admin',
                 password : 'admin'
             },
-            accessToken : '8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784'
-        }
+            accessToken : '8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784',
+            userProfile: {
+                id: '8661035776',
+                username: 'upgrad_sde',
+                profile_picture: 'https://scontent.cdninstagram.com/vp/a00d1efa0c39e2e35c26134689f21261/5D8A162A/t51.2885-19/s150x150/60113385_2304743493132057_1881074158138294272_n.jpg?_nc_ht=scontent.cdninstagram.com',
+                full_name: 'upGrad SD Project',
+                bio: 'Follow the official upGrad account: @upgrad_edu',
+                website: 'https://www.upgrad.com/',
+                is_business: false,
+                counts: {
+                    'media': 5,
+                     'follows': 3,
+                     'followed_by': 32
+                    }
+            }
+        };
+        console.log('props:', this.props);
     }
 
     loginClickHandler = () => {
@@ -46,6 +62,7 @@ class Login extends Component {
              });
             sessionStorage.setItem('access-token', this.state.accessToken);
             this.setState({ loggedIn: true });
+            // this.loadUserProfile();
             this.redirectToHome();
         }else {
              this.setState({
@@ -78,7 +95,6 @@ class Login extends Component {
                         <FormControl required className="formControl">
                             <InputLabel htmlFor="username">Username </InputLabel>
                             <Input id="username" type="text"
-                                username={this.state.username}
                                 onChange={this.inputUserNameChangeHandler} />
                             <FormHelperText className={this.state.usernameRequired}>
                                 <span className="red">Required</span>
@@ -86,7 +102,7 @@ class Login extends Component {
                         </FormControl><br /><br />
                         <FormControl required className="formControl">
                             <InputLabel htmlFor="password">Password </InputLabel>
-                            <Input id="password" type="password" password={this.state.password} onChange={this.inputPasswordChangeHandler} />
+                            <Input id="password" type="password" onChange={this.inputPasswordChangeHandler} />
                             <FormHelperText className={this.state.passwordRequired}>
                                 <span className="red">Required</span>
                             </FormHelperText>

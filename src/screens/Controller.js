@@ -7,31 +7,34 @@ import  PrivateRoute  from '../common/PrivateRoute';
 
 class Controller extends Component {
 
-  constructor()
+  constructor(props)
   {
-    super();
-    // this.baseUrl = "http://54.255.154.11:8080/api/v1/";
+    super(props);
+    this.baseUrl = "https://api.instagram.com/v1/";
     this.state = {
       loggedIn: sessionStorage.getItem('access-token') == null ? false : true
-    }
+    };
   }
+
 
   render(){
     return(
       <Router>
          <div className="main-container">
            <Switch>
-              <Route exact path='/' render={(props) => <Login {...props}/> }  />
+              <Route exact path='/' render={(props) => <Login {...props} baseUrl = {this.baseUrl} /> }   />
               <PrivateRoute 
                   exact 
                   path='/home'
                   component={Home} 
-                  render={(props) => (<Home {...props} /> )} /> 
+                  baseUrl = {this.baseUrl}
+                  /> 
               <PrivateRoute 
                 exact 
                 path='/profile' 
                 component={Profile} 
-                render={(props) => (<Profile {...props}/>)}   />
+                baseUrl = {this.baseUrl}
+                />
             </Switch>
         </div>
       </Router>
