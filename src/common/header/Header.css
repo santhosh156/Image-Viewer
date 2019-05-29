@@ -10,9 +10,15 @@
 .app-logo{
     color: #fff;
     font-size: 18px;
+    text-decoration: none;
 }
 
 .avatar {
     margin: 10;
     cursor: pointer;
+}
+
+#simple-menu ul {
+    margin: 0px;
+    padding:0px;
 }

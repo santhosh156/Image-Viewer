@@ -5,11 +5,15 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
-import { withRouter} from 'react-router-dom';
+import { withRouter , Link} from 'react-router-dom';
+import Divider from '@material-ui/core/Divider';
 
 const StyledMenu = withStyles({
     paper: {
       border: '1px solid #d3d4d5',
+      backgroundColor: '#DFDFDF',
+      padding: 8,
+      marginTop: 4,
     },
   })(props => (
     <Menu
@@ -30,6 +34,8 @@ const StyledMenu = withStyles({
 
  const StyledMenuItem = withStyles(theme => ({
     root: {
+      padding: 4,
+      minHeight: 'auto',
       '&:focus': {
         backgroundColor: theme.palette.primary.main,
         '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
@@ -41,20 +47,15 @@ const StyledMenu = withStyles({
 
 class Header extends Component {
 
-    // const [anchorEl, setAnchorEl] = React.useState(null);
     constructor(props) {
         super(props);
-        // this.handleClose = this.handleClose.bind(this);
         this.state = {
             loggedIn: sessionStorage.getItem('access-token') == null ? false : true,
             accessToken : '8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784',
             open: false,
             anchorEl: null,
         };
-        console.log('Header Props::', this.props);
     }
-
-    
 
     handleClick = (event) => {
         this.setState({ anchorEl: event.currentTarget });
@@ -68,8 +69,8 @@ class Header extends Component {
             this.props.history.push("/");
         } 
         this.setState({ anchorEl: null });
-        
     };
+    
 
     
     render() {  
@@ -77,7 +78,7 @@ class Header extends Component {
         return(
             <div>
                 <header className="app-header">
-                    <div className="app-logo">Image Viewer</div>
+                { this.props.match.path ==="/profile" ? <Link  to="/home" className="app-logo" >Image Viewer</Link> : <div className="app-logo" link>Image Viewer</div> }
                     {this.props.profileIcon === "true" && this.state.loggedIn ?
                         <div className="showprofile-icon">
                             <Avatar 
@@ -90,11 +91,14 @@ class Header extends Component {
                             <StyledMenu id="simple-menu" anchorEl={this.state.anchorEl} open={Boolean(this.state.anchorEl)} onClose={this.handleClose.bind(this,'')}>
                                   
                                 { this.props.match.path !=="/profile" ? 
-                                <StyledMenuItem onClick={this.handleClose.bind(this,'profile')}>
-                                <ListItemText primary="Profile" />
-                                </StyledMenuItem> : "" }
-                                <StyledMenuItem onClick={this.handleClose.bind(this, 'logout')}>
-                                <ListItemText primary="Logout" />
+                                <div>
+                                <StyledMenuItem className="menu-item" onClick={this.handleClose.bind(this,'profile')}>
+                                  <ListItemText primary="My Account" />
+                                </StyledMenuItem> 
+                                <Divider light /> 
+                                </div>: ""  }
+                                <StyledMenuItem className="menu-item" onClick={this.handleClose.bind(this, 'logout')}>
+                                  <ListItemText primary="Logout" />
                                 </StyledMenuItem> 
                             </StyledMenu>
                         </div> : ""}

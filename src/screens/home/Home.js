@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
 import './Home.css';
 import Header from '../../common/header/Header';
 
@@ -27,7 +26,6 @@ class Home extends Component {
         let that = this;
         xhrUserProfile.addEventListener("readystatechange", function () {
         if (this.readyState === 4) {
-            console.log('profile',JSON.parse(this.responseText).data);
             const data = JSON.parse(this.responseText).data;
             that.setState({
                 profile_picture: data.profile_picture,
@@ -46,7 +44,6 @@ class Home extends Component {
     }
 
     render(){
-        console.log('props Home user::', this.props.userprofile);
         return(
             <div>
                 <Header profileIcon="true" profilePicture={this.state.profile_picture} profileUserName={this.state.username}/>
