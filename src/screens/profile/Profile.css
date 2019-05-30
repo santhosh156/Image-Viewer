@@ -1,0 +1,28 @@
+.user-details-container{
+    display: flex;
+}
+.user-details{
+    display: flex;
+    flex-direction: column;
+}
+.edit-fullname-modal-title{
+    margin-bottom: 16px !important;
+}
+.grid-item{
+    cursor: pointer;
+}
+.tags{
+    color: blue;
+}
+.redColor{
+    color: red;
+    cursor: pointer;
+}
+.greyColor{
+    color: grey;
+    cursor: pointer;
+}
+.comments-min-height{
+    min-height: 50Px;
+    margin-bottom: 20px;
+}

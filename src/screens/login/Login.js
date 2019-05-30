@@ -11,6 +11,7 @@ import Input from '@material-ui/core/Input';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
 class Login extends Component {
+   
 
     constructor(){
         super();
@@ -25,8 +26,8 @@ class Login extends Component {
                 username : 'admin',
                 password : 'admin'
             },
-            accessToken : '8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784'
-        }
+            accessToken : '8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784',
+        };
     }
 
     loginClickHandler = () => {
@@ -78,7 +79,6 @@ class Login extends Component {
                         <FormControl required className="formControl">
                             <InputLabel htmlFor="username">Username </InputLabel>
                             <Input id="username" type="text"
-                                username={this.state.username}
                                 onChange={this.inputUserNameChangeHandler} />
                             <FormHelperText className={this.state.usernameRequired}>
                                 <span className="red">Required</span>
@@ -86,7 +86,7 @@ class Login extends Component {
                         </FormControl><br /><br />
                         <FormControl required className="formControl">
                             <InputLabel htmlFor="password">Password </InputLabel>
-                            <Input id="password" type="password" password={this.state.password} onChange={this.inputPasswordChangeHandler} />
+                            <Input id="password" type="password" onChange={this.inputPasswordChangeHandler} />
                             <FormHelperText className={this.state.passwordRequired}>
                                 <span className="red">Required</span>
                             </FormHelperText>
