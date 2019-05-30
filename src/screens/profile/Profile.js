@@ -252,7 +252,7 @@ class Profile extends Component {
         const { classes } = this.props;
         return (
             <div>
-                <Header profileIcon="true" profilePicture={this.state.profile_picture} profileUserName={this.state.username} />
+                <Header profileIcon={true} profilePicture={this.state.profile_picture} profileUserName={this.state.username} />
                 <Container fixed>
                     <Grid container spacing={3} justify="flex-start" alignItems="center">
                         <Grid item >
@@ -379,7 +379,7 @@ class Profile extends Component {
                                             <Grid item >
                                                 <Typography variant="caption">
                                                     {(this.state.selectedPost.likes.count)} likes
-                                            </Typography>
+                                               </Typography>
                                             </Grid>
                                         </Grid>
 

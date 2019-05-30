@@ -1,7 +1,6 @@
 .app-header {
     background-color: #263238;
-    height: 36px;
-    padding: 8px 16px 8px 16px;
+    padding: 16px 16px 16px 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -21,4 +20,25 @@
 #simple-menu ul {
     margin: 0px;
     padding:0px;
+}
+
+.header-right{
+    display: flex;
+}
+.searchbox{
+    padding: 2px 4px;
+    display: flex;
+    align-items: center;
+    width: 300px !important;
+    border-radius: 4px !important;
+    background-color: #c0c0c0 !important;
+    margin-right: 16px;
+}
+
+.searchbox .formControl{
+    margin-left: 4px;
+}
+
+.search-post::before{
+    border: none;
 }
