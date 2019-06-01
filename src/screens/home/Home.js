@@ -6,7 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
+import Divider from '@material-ui/core/Divider';
 import Avatar from '@material-ui/core/Avatar';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Favorite from '@material-ui/icons/Favorite';
@@ -141,10 +141,10 @@ class Home extends Component {
     /**
      * @memberof Home
      * @description Set state addNewComment on value change
-     */
+     *
     inputAddCommentChangeHandler = (e) => {
         this.setState({ addNewComment: e.target.value });
-    }
+    }*/
 
     /**
      * @memberof Home
@@ -171,7 +171,7 @@ class Home extends Component {
             this.setState({
                 selectedPost: _selectedPostItem,
                 userPosts: _userPosts,
-                addNewComment: this.state.addNewComment
+                addNewComment: ''
             });
         }
     }
@@ -198,28 +198,27 @@ class Home extends Component {
                                     />
                                     <CardMedia
                                         className="classes.media"
-                                        image={post.images.low_resolution.url}
+                                        image={post.images.standard_resolution.url}
                                         title={(post.caption.text).split('\n')[0]}
-                                        style={{ 'height': 320, 'width':'100%'}}
+                                        style={{ 'height': 320, 'width':'95%', 'margin': (0, 0, 0, 15)}}
                                     />
+                                    
                                     <CardContent>
+                                        <Divider dark="true" />    
                                         <Grid container spacing={3} justify="flex-start" alignItems="center">
                                             <Grid item >
                                                 <Typography variant="caption">
-                                                    {(post.caption.text).split('\n')[0]}
-                                                </Typography>
-                                            </Grid>
-                                        </Grid>
-                                        <Grid container spacing={3} justify="flex-start" alignItems="center">
-                                            <Grid item >
-                                                {(post.tags || []).map((tag, i) => {
+                                                    {(post.caption.text.split('\n')[0])}
+                                                    <br />
+                                                    {(post.tags || []).map((tag, i) => {
                                                     return <Typography key={i} variant="caption" color="primary"> #{tag}
                                                             </Typography>
                                                 })}
+                                                </Typography>
                                             </Grid>
                                         </Grid>
                                         <Grid container spacing={1} justify="flex-start" alignItems="center">
-                                            <Grid item className={'like-area'}>
+                                            <Grid item>
                                                 {post.user_has_liked ? 
                                                     <FavoriteBorder className={'greyColor'} 
                                                                     onClick={this.likesClickHandler.bind(this, post.id, index)} 
@@ -249,7 +248,7 @@ class Home extends Component {
                                             <Grid item >
                                                 <FormControl className="formControl">
                                                     <InputLabel htmlFor="addcomment">Add a comment </InputLabel>
-                                                    <Input id="addcomment" type="text" onChange={this.inputAddCommentChangeHandler} value={this.state.addNewComment} />
+                                                    <Input id="addcomment" type="text" onChange={this.inputAddCommentChangeHandler} />
                                                 </FormControl>
                                             </Grid>
                                             <Grid item >
