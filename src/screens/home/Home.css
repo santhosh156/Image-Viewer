@@ -3,13 +3,27 @@
 }
 .redColor{
     color: red;
+    fill: red;
     cursor: pointer;
 }
 .greyColor{
     color: grey;
+    fill: grey;
     cursor: pointer;
 }
 
 .postcard{
     max-width: 100%;
+}
+
+.comments-min-height{
+    min-height: 50Px;
+}
+
+#addcomment{
+    width: 480px;
+}
+
+.like-area {
+    margin-top: 20px;
 }

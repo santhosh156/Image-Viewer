@@ -47,6 +47,7 @@ class Login extends Component {
              });
             sessionStorage.setItem('access-token', this.state.accessToken);
             this.setState({ loggedIn: true });
+            console.log(sessionStorage);
             this.redirectToHome();
         }else {
              this.setState({

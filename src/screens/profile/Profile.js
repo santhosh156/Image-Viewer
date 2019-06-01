@@ -96,7 +96,7 @@ class Profile extends Component {
             }
         });
         xhrUserProfile.open("GET", this.props.baseUrl + "users/self/?access_token=" + this.state.access_token);
-        xhrUserProfile.setRequestHeader("Cache-Control", "no-cache");
+        //xhrUserProfile.setRequestHeader("Cache-Control", "no-cache");
         xhrUserProfile.send(dataUserProfile);
 
 
@@ -110,7 +110,7 @@ class Profile extends Component {
             }
         });
         xhrUserPosts.open("GET", this.props.baseUrl + "users/self/media/recent?access_token=" + this.state.access_token);
-        xhrUserPosts.setRequestHeader("Cache-Control", "no-cache");
+        //xhrUserPosts.setRequestHeader("Cache-Control", "no-cache");
         xhrUserPosts.send(dataUserPosts);
 
     }
@@ -228,6 +228,7 @@ class Profile extends Component {
             return;
         } else {
             let _selectedPostItem = this.state.selectedPost;
+            console.log(_selectedPostItem)
             _selectedPostItem.comments['data'] = _selectedPostItem.comments['data'] || [];
             _selectedPostItem.comments['data'].push({
                 id: (_selectedPostItem.comments['data'].length + 1) ,
