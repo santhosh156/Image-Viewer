@@ -194,8 +194,7 @@ class Home extends Component {
                                         </Avatar>
                                         }
                                         title={post.user.username}
-                                        subheader= {this.getYear(post.created_time)}
-                                        // subheader={post.created_time.toLocaleDateString()}
+                                        subheader={moment.unix(post.created_time).format("DD/MM/YYYY HH:mm:ss")}
                                     />
                                     <CardMedia
                                         className="classes.media"
