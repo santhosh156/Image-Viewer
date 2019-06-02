@@ -26,3 +26,8 @@
     min-height: 50Px;
     margin-bottom: 20px;
 }
+
+.avatar-grid{
+    display: flex;
+    justify-content: center;
+}

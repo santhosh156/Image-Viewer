@@ -256,12 +256,12 @@ class Profile extends Component {
             <div>
                 <Header profileIcon={true} profilePicture={this.state.profile_picture} profileUserName={this.state.username} />
                 <Container fixed>
-                    <Grid container spacing={3} justify="flex-start" alignItems="center">
-                        <Grid item >
+                    <Grid container spacing={3} justify="flex-start" alignItems="center" style={{'paddingTop':8 , 'paddingBottom':8}}>
+                        <Grid item xs={4} className="avatar-grid">
                             <Avatar alt={this.state.username} src={this.state.profile_picture} className={classes.bigAvatar} />
                         </Grid>
-                        <Grid item >
-                            <Typography variant="h6" component="h6">
+                        <Grid item  xs={6}>
+                            <Typography variant="h6" component="h6" style={{'paddingBottom':12}}>
                                 {this.state.username}
                             </Typography>
                             <Grid container spacing={3} justify="space-between" alignItems="center">
