@@ -1,34 +1,40 @@
-.user-details-container{
+.user-details-container {
     display: flex;
 }
-.user-details{
+
+.user-details {
     display: flex;
     flex-direction: column;
 }
-.edit-fullname-modal-title{
+
+.edit-fullname-modal-title {
     margin-bottom: 16px !important;
 }
-.grid-item{
+
+.grid-item {
     cursor: pointer;
 }
-.tags{
+
+.tags {
     color: blue;
 }
-.redColor{
+
+.redColor {
     color: red;
     cursor: pointer;
 }
-.greyColor{
+
+.greyColor {
     color: grey;
     cursor: pointer;
 }
-.comments-min-height{
+
+.comments-min-height {
     min-height: 50Px;
     margin-bottom: 20px;
 }
 
-.avatar-grid{
+.avatar-grid {
     display: flex;
     justify-content: center;
-    
 }

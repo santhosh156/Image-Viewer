@@ -65,6 +65,11 @@ class Header extends Component {
         this.setState({ anchorEl: event.currentTarget });
     }
     
+    /**
+     * @memberof Header
+     * @description To handle menu options on header
+     */
+
     handleClose = (purpose, e) => {
         if( purpose === 'profile'){
             this.props.history.push("/profile");
@@ -81,36 +86,42 @@ class Header extends Component {
         return(
             <div>
                 <header className="app-header">
-                { this.props.match.path ==="/profile" ? <Link  to="/home" className="app-logo" >Image Viewer</Link> : <div className="app-logo">Image Viewer</div> }
-                    {this.props.profileIcon === true && this.state.loggedIn ?
-                        <div className="header-right">
-                          { this.props.match.path ==="/home" ? <Paper className="searchbox">
-                                <Search />
-                            <InputBase className="input" placeholder="Search..." onChange={this.props.searchChangeHandler}/>
-                          </Paper> : ""}
-                          <div className="showprofile-icon">
-                              <Avatar 
-                                  alt={this.state.profileUserName} 
-                                  src={this.props.profilePicture}  
-                                  className="avatar" 
-                                  onClick={this.handleClick}
-                                  aria-owns={this.state.anchorEl ? 'simple-menu' : undefined}
-                                  aria-haspopup="true"/>
-                              <StyledMenu id="simple-menu" anchorEl={this.state.anchorEl} open={Boolean(this.state.anchorEl)} onClose={this.handleClose.bind(this,'')}>
-                                    
-                                  { this.props.match.path !=="/profile" ? 
-                                  <div>
-                                  <StyledMenuItem className="menu-item" onClick={this.handleClose.bind(this,'profile')}>
-                                    <ListItemText primary="My Account" />
-                                  </StyledMenuItem> 
-                                  <Divider light /> 
-                                  </div>: ""  }
-                                  <StyledMenuItem className="menu-item" onClick={this.handleClose.bind(this, 'logout')}>
-                                    <ListItemText primary="Logout" />
-                                  </StyledMenuItem> 
-                              </StyledMenu>
-                          </div> 
-                        </div> : ""}
+                  {
+                    this.props.match.path ==="/profile" ? 
+                    <Link to="/home" className="app-logo">Image Viewer</Link> 
+                    : 
+                    <div className="app-logo">Image Viewer</div> 
+                  }
+                  {this.props.profileIcon === true && this.state.loggedIn ?
+                      <div className="header-right">
+                        { this.props.match.path ==="/home" ? <Paper className="searchbox">
+                              <Search />
+                          <InputBase className="input" placeholder="Search..." onChange={this.props.searchChangeHandler}/>
+                        </Paper> : ""}
+                        <div className="showprofile-icon">
+                            <Avatar 
+                                alt={this.state.profileUserName} 
+                                src={this.props.profilePicture}  
+                                className="avatar" 
+                                onClick={this.handleClick}
+                                aria-owns={this.state.anchorEl ? 'simple-menu' : undefined}
+                                aria-haspopup="true"/>
+                            <StyledMenu id="simple-menu" anchorEl={this.state.anchorEl} open={Boolean(this.state.anchorEl)} onClose={this.handleClose.bind(this,'')}>
+                                  
+                                { this.props.match.path !=="/profile" ? 
+                                <div>
+                                <StyledMenuItem className="menu-item" onClick={this.handleClose.bind(this,'profile')}>
+                                  <ListItemText primary="My Account" />
+                                </StyledMenuItem> 
+                                <Divider light /> 
+                                </div>: ""  }
+                                <StyledMenuItem className="menu-item" onClick={this.handleClose.bind(this, 'logout')}>
+                                  <ListItemText primary="Logout" />
+                                </StyledMenuItem> 
+                            </StyledMenu>
+                        </div> 
+                    </div> : ""
+                  }
                 </header>
             </div>
         )

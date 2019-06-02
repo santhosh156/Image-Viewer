@@ -11,9 +11,9 @@ import Input from '@material-ui/core/Input';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
 class Login extends Component {
-   
 
-    constructor(){
+
+    constructor() {
         super();
         this.state = {
             username: '',
@@ -22,11 +22,11 @@ class Login extends Component {
             passwordRequired: 'dispNone',
             incorrectCredentials: 'dispNone',
             loggedIn: sessionStorage.getItem('access-token') == null ? false : true,
-            credentials : {
-                username : 'admin',
-                password : 'admin'
+            credentials: {
+                username: 'admin',
+                password: 'admin'
             },
-            accessToken : '8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784',
+            accessToken: '8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784',
         };
     }
 
@@ -34,25 +34,24 @@ class Login extends Component {
         this.state.username === '' ? this.setState({ usernameRequired: 'dispBlock' }) : this.setState({ usernameRequired: 'dispNone' });
         this.state.password === "" ? this.setState({ passwordRequired: 'dispBlock' }) : this.setState({ passwordRequired: 'dispNone' });
 
-        if (this.state.username === "" || this.state.password === "") { 
+        if (this.state.username === "" || this.state.password === "") {
             this.setState({
-                incorrectCredentials : 'dispNone'
-             });
+                incorrectCredentials: 'dispNone'
+            });
             return;
-         }
+        }
 
-        if(this.state.username === this.state.credentials.username && this.state.password === this.state.credentials.password){
+        if (this.state.username === this.state.credentials.username && this.state.password === this.state.credentials.password) {
             this.setState({
-                incorrectCredentials : 'dispNone'
-             });
+                incorrectCredentials: 'dispNone'
+            });
             sessionStorage.setItem('access-token', this.state.accessToken);
             this.setState({ loggedIn: true });
-            console.log(sessionStorage);
             this.redirectToHome();
-        }else {
-             this.setState({
-                incorrectCredentials : 'dispBlock'
-             });
+        } else {
+            this.setState({
+                incorrectCredentials: 'dispBlock'
+            });
         }
     }
 
@@ -68,38 +67,61 @@ class Login extends Component {
         this.setState({ password: e.target.value });
     }
 
-    render(){
-        return(
-            <div>
-                <Header />
-                <Card className="cardStyle">
-                    <CardContent>
-                        <Typography variant="h5" component="h5">
-                            LOGIN
-                        </Typography><br />
-                        <FormControl required className="formControl">
-                            <InputLabel htmlFor="username">Username </InputLabel>
-                            <Input id="username" type="text"
-                                onChange={this.inputUserNameChangeHandler} />
-                            <FormHelperText className={this.state.usernameRequired}>
-                                <span className="red">Required</span>
-                            </FormHelperText>
-                        </FormControl><br /><br />
-                        <FormControl required className="formControl">
-                            <InputLabel htmlFor="password">Password </InputLabel>
-                            <Input id="password" type="password" onChange={this.inputPasswordChangeHandler} />
-                            <FormHelperText className={this.state.passwordRequired}>
-                                <span className="red">Required</span>
-                            </FormHelperText>
-                        </FormControl><br /><br />
-                        <FormHelperText className={this.state.incorrectCredentials} >
-                                <span className="red">Incorrect username and/or password</span>
-                                <br /><br />
-                        </FormHelperText>
-                        <Button variant="contained" color="primary" style={{width: 10}} onClick={this.loginClickHandler}>LOGIN</Button>
-                    </CardContent>
-                </Card>               
-            </div>
+    render() {
+        return ( <
+            div >
+            <
+            Header / >
+            <
+            Card className = "cardStyle" >
+            <
+            CardContent >
+            <
+            Typography variant = "h5"
+            component = "h5" >
+            LOGIN <
+            /Typography><br / >
+            <
+            FormControl required className = "formControl" >
+            <
+            InputLabel htmlFor = "username" > Username < /InputLabel> <
+            Input id = "username"
+            type = "text"
+            onChange = { this.inputUserNameChangeHandler }
+            /> <
+            FormHelperText className = { this.state.usernameRequired } >
+            <
+            span className = "red" > Required < /span> <
+            /FormHelperText> <
+            /FormControl><br / > < br / >
+            <
+            FormControl required className = "formControl" >
+            <
+            InputLabel htmlFor = "password" > Password < /InputLabel> <
+            Input id = "password"
+            type = "password"
+            onChange = { this.inputPasswordChangeHandler }
+            /> <
+            FormHelperText className = { this.state.passwordRequired } >
+            <
+            span className = "red" > Required < /span> <
+            /FormHelperText> <
+            /FormControl><br / > < br / >
+            <
+            FormHelperText className = { this.state.incorrectCredentials } >
+            <
+            span className = "red" > Incorrect username and / or password < /span> <
+            br / > < br / >
+            <
+            /FormHelperText> <
+            Button variant = "contained"
+            color = "primary"
+            style = {
+                { width: 10 } }
+            onClick = { this.loginClickHandler } > LOGIN < /Button> <
+            /CardContent> <
+            /Card> <
+            /div>
         )
     }
 

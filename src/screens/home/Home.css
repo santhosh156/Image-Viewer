@@ -1,26 +1,27 @@
-.tags{
+.tags {
     color: blue;
 }
-.redColor{
+
+.redColor {
     color: red;
     fill: red;
     cursor: pointer;
 }
-.greyColor{
+
+.greyColor {
     color: grey;
     fill: grey;
     cursor: pointer;
 }
 
-.postcard{
+.postcard {
     max-width: 100%;
 }
 
-.comments-min-height{
+.comments-min-height {
     min-height: 50Px;
 }
 
-.flex-grow-1{
+.flex-grow-1 {
     flex-grow: 1;
 }
-

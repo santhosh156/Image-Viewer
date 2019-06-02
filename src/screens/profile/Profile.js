@@ -147,8 +147,10 @@ class Profile extends Component {
         if (this.state.editFullName === '') {
             return;
         } else {
-            this.setState({ full_name: this.state.editFullName, editNameOpen: false,
-                fullnameRequired: 'dispNone' });
+            this.setState({
+                full_name: this.state.editFullName, editNameOpen: false,
+                fullnameRequired: 'dispNone'
+            });
         }
     }
 
@@ -196,7 +198,7 @@ class Profile extends Component {
         let _selectedPostItem = this.state.selectedPost;
         let _userPosts = this.state.userPosts;
         const _selectedIndex = this.state.selectedIndex;
-        
+
         if (_selectedPostItem.user_has_liked) {
             _selectedPostItem.user_has_liked = false;
             _selectedPostItem.likes.count = (_selectedPostItem.likes.count) + 1;
@@ -231,10 +233,9 @@ class Profile extends Component {
             return;
         } else {
             let _selectedPostItem = this.state.selectedPost;
-            console.log(_selectedPostItem)
             _selectedPostItem.comments['data'] = _selectedPostItem.comments['data'] || [];
             _selectedPostItem.comments['data'].push({
-                id: (_selectedPostItem.comments['data'].length + 1) ,
+                id: (_selectedPostItem.comments['data'].length + 1),
                 comment_by: this.state.username,
                 comment_value: this.state.addNewComment
             });
@@ -258,12 +259,12 @@ class Profile extends Component {
             <div>
                 <Header profileIcon={true} profilePicture={this.state.profile_picture} profileUserName={this.state.username} />
                 <Container fixed>
-                    <Grid container spacing={3} justify="flex-start" alignItems="center" style={{'paddingTop':8 , 'paddingBottom':8}}>
+                    <Grid container spacing={3} justify="flex-start" alignItems="center" style={{ 'paddingTop': 8, 'paddingBottom': 8 }}>
                         <Grid item xs={4} className="avatar-grid">
                             <Avatar alt={this.state.username} src={this.state.profile_picture} className={classes.bigAvatar} />
                         </Grid>
-                        <Grid item  xs={6}>
-                            <Typography variant="h6" component="h6" style={{'paddingBottom':12}}>
+                        <Grid item xs={6}>
+                            <Typography variant="h6" component="h6" style={{ 'paddingBottom': 12 }}>
                                 {this.state.username}
                             </Typography>
                             <Grid container spacing={3} justify="space-between" alignItems="center">
@@ -361,7 +362,7 @@ class Profile extends Component {
                                         <Grid container spacing={3} justify="flex-start" alignItems="center">
                                             <Grid item >
                                                 {(this.state.selectedPost.tags || []).map((tag, i) => {
-                                                    return <Typography variant="caption" color="primary"> #{tag}</Typography>
+                                                    return <Typography key= {tag} variant="caption" color="primary"> #{tag}</Typography>
                                                 })}
                                             </Grid>
                                         </Grid>
@@ -378,15 +379,15 @@ class Profile extends Component {
 
                                         <Grid container spacing={1} justify="flex-start" alignItems="center">
                                             <Grid item >
-                                                {this.state.selectedPost.user_has_liked ? 
-                                                        <FavoriteBorder className={'greyColor'} 
-                                                                        onClick={this.likesClickHandler} 
-                                                        />
-                                                        :
-                                                        <Favorite className={'redColor'} 
-                                                                onClick={this.likesClickHandler} 
-                                                        />                                                                                                       
-                                                }   
+                                                {this.state.selectedPost.user_has_liked ?
+                                                    <FavoriteBorder className={'greyColor'}
+                                                        onClick={this.likesClickHandler}
+                                                    />
+                                                    :
+                                                    <Favorite className={'redColor'}
+                                                        onClick={this.likesClickHandler}
+                                                    />
+                                                }
                                             </Grid>
                                             <Grid item >
                                                 <Typography variant="caption">
