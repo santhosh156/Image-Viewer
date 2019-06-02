@@ -9,6 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Divider from '@material-ui/core/Divider';
 import Avatar from '@material-ui/core/Avatar';
 import Favorite from '@material-ui/icons/Favorite';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -230,7 +231,16 @@ class Home extends Component {
                                         </Grid>
                                         <Grid container spacing={1} justify="flex-start" alignItems="center">
                                             <Grid item>
-                                                <Favorite className={post.user_has_liked  ? 'redColor' : 'greyColor'} onClick={this.likesClickHandler.bind(this, post.id, index)} />
+                                                
+                                            {post.user_has_liked ? 
+                                                    <FavoriteBorder className={'greyColor'} 
+                                                                    onClick={this.likesClickHandler.bind(this, post.id, index)} 
+                                                    />
+                                                    :
+                                                    <Favorite className={'redColor'} 
+                                                              onClick={this.likesClickHandler.bind(this, post.id, index)} 
+                                                    />                                                                                                       
+                                                }
                                             </Grid>
                                             <Grid item >
                                                 <Typography variant="caption">
@@ -248,7 +258,7 @@ class Home extends Component {
                                             </Grid>
                                         </Grid>                                                    
                                         <Grid container spacing={2} justify="flex-start" alignItems="center">
-                                            <Grid item >
+                                            <Grid item className="flex-grow-1">
                                                 <FormControl className="formControl">
                                                     <InputLabel htmlFor="addcomment">Add a comment </InputLabel>
                                                     <Input id={"addcomment"+ post.id } type="text" />

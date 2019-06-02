@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import Create from '@material-ui/icons/Create';
 import Favorite from '@material-ui/icons/Favorite';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
@@ -40,7 +41,7 @@ const styles = theme => ({
     },
     paper_big: {
         position: 'absolute',
-        width: 600,
+        width: 800,
         backgroundColor: 'white',
         padding: 16,
         outline: 'none',
@@ -337,7 +338,7 @@ class Profile extends Component {
                                         <img src={this.state.selectedPost.images.standard_resolution.url} width="100%" alt={(this.state.selectedPost.caption.text).split('\n')[0]} />
                                     </Grid>
                                     <Grid item xs={6}>
-                                        <Grid container spacing={3} justify="flex-start" alignItems="center">
+                                        <Grid container spacing={3} justify="flex-start" alignItems="center" >
                                             <Grid item >
                                                 <Avatar src={this.state.selectedPost.user.profile_picture} alt={this.state.selectedPost.user.username} />
                                             </Grid>
@@ -375,7 +376,15 @@ class Profile extends Component {
 
                                         <Grid container spacing={1} justify="flex-start" alignItems="center">
                                             <Grid item >
-                                                <Favorite className={this.state.selectedPost.user_has_liked ? 'redColor' : 'greyColor'} onClick={this.likesClickHandler} />
+                                                {this.state.selectedPost.user_has_liked ? 
+                                                        <FavoriteBorder className={'greyColor'} 
+                                                                        onClick={this.likesClickHandler} 
+                                                        />
+                                                        :
+                                                        <Favorite className={'redColor'} 
+                                                                onClick={this.likesClickHandler} 
+                                                        />                                                                                                       
+                                                }   
                                             </Grid>
                                             <Grid item >
                                                 <Typography variant="caption">
@@ -385,7 +394,7 @@ class Profile extends Component {
                                         </Grid>
 
                                         <Grid container spacing={2} justify="flex-start" alignItems="center">
-                                            <Grid item >
+                                            <Grid item className="flex-grow-1">
                                                 <FormControl className="formControl">
                                                     <InputLabel htmlFor="addcomment">Add a comment </InputLabel>
                                                     <Input id="addcomment" type="text" onChange={this.inputAddCommentChangeHandler} value={this.state.addNewComment} />
